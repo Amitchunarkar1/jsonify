@@ -1,12 +1,15 @@
 {
   "name": "jsonify",
+  "homepage": "https://Amitchunarkar1.github.io/jsonify",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
   },
   "dependencies": {
     "preact": "^10.19.4",
@@ -17,6 +20,7 @@
   "devDependencies": {
     "@preact/preset-vite": "^2.8.1",
     "@types/react-syntax-highlighter": "^15.5.11",
+    "gh-pages": "^6.1.1",
     "typescript": "^5.2.2",
     "vite": "^5.1.0"
   }
