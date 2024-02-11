@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/jsonify/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSONIFY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/mark.js"></script>
+    <style>
+      .search-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        border: 1px solid #555;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        cursor: move;
+      }
+
+      .search-container input[type="text"] {
+        padding: 5px;
+        margin-right: 5px;
+        border: 1px solid #555;
+        border-radius: 3px;
+        background-color: #444; 
+        color: white;
+      }
+
+      .search-container button {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 3px;
+        background-color: #636363; /* Button background color */
+        color: white; /* Button text color */
+        cursor: pointer;
+      }
+
+      .search-container button:hover {
+        background-color: #555; /* Darker button background color on hover */
+      }
+    </style>
+    <script type="module" crossorigin src="/jsonify/assets/index-BveZCCyI.js"></script>
+    <link rel="stylesheet" crossorigin href="/jsonify/assets/index-BoW6CJEc.css">
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="searchContainer" class="search-container" draggable="true">
+      <input type="text" id="searchTerm" placeholder="Search...">
+      <button onclick="highlightText()">
+        <i class="fas fa-search"></i> <!-- Search icon -->
+      </button>
+      <button onclick="nextResult()">
+        <i class="fas fa-chevron-down"></i> <!-- Next icon -->
+      </button>
+      <button onclick="previousResult()">
+        <i class="fas fa-chevron-up"></i> <!-- Previous icon -->
+      </button>
+    </div>
+     
+  
+    <script>
+
+const searchContainer = document.getElementById('searchContainer');
+    let offsetX, offsetY, isDragging = false;
+
+    searchContainer.addEventListener('mousedown', startDrag);
+    searchContainer.addEventListener('mouseup', endDrag);
+
+    function startDrag(event) {
+      isDragging = true;
+      offsetX = event.clientX - searchContainer.getBoundingClientRect().left;
+      offsetY = event.clientY - searchContainer.getBoundingClientRect().top;
+    }
+
+    function endDrag() {
+      isDragging = false;
+    }
+
+    document.addEventListener('mousemove', handleDrag);
+
+    // function handleDrag(event) {
+    //   if (isDragging) {
+    //     const x = event.clientX - offsetX;
+    //     const y = event.clientY - offsetY;
+    //     searchContainer.style.left = x + 'px';
+    //     searchContainer.style.top = y + 'px';
+    //   }
+    // }
+
+      let markInstance;
+  
+      function highlightText() {
+        const searchTerm = document.getElementById('searchTerm').value;
+        const content = document.getElementById('app');
+        markInstance = new Mark(content);
+        markInstance.unmark().mark(searchTerm);
+      }
+  
+      function nextResult() {
+        if (markInstance) {
+          markInstance.next();
+          scrollToHighlighted();
+
+        }
+      }
+  
+      function previousResult() {
+        if (markInstance) {
+          markInstance.previous();
+          scrollToHighlighted();
+
+        }
+      }
+      function scrollToHighlighted() {
+      const highlightedElement = document.querySelector('.mark');
+      if (highlightedElement) {
+        highlightedElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+    </script>
+    
+  </body>
+</html>
