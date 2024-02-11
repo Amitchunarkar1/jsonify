@@ -1,0 +1,17 @@
+#app{
+  margin: 0% 2%;
+  width: 98%;
+}
+
+.btn-box{
+  margin: 10px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.json-box{
+  margin: 1% 0%;
+}
+.mb-1{
+  margin-bottom: 1%;
+}
