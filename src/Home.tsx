@@ -1,15 +1,14 @@
-import { h, FunctionalComponent } from "preact";
+import { FunctionalComponent } from "preact";
 import { useState, useRef } from "preact/hooks";
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import json from 'react-syntax-highlighter/dist/esm/languages/hljs/json';
-import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import ReactJson from 'react-json-view';
 
 SyntaxHighlighter.registerLanguage('json', json);
 
-interface HTMLInputElementEvent extends Event {
-  target: HTMLInputElement & EventTarget;
-}
+// interface HTMLInputElementEvent extends Event {
+//   target: HTMLInputElement & EventTarget;
+// }
 
 const CollapsibleJSONViewer: FunctionalComponent<{ jsonData: string }> = ({ jsonData }) => {
   const [collapsed, setCollapsed] = useState<boolean>(false);
@@ -81,11 +80,11 @@ const Home: FunctionalComponent = () => {
   };
 
   const filterJson = (key: string) => {
-    // Implement filtering functionality here
+    console.log("key", key);
   };
 
   const navigateToSection = (section: string) => {
-    // Implement navigation functionality here
+    console.log("section", section);
   };
 
   const loadFromURL = async (url: string) => {
