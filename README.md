@@ -5,17 +5,16 @@ JSONify is an open-source project designed to simplify the formatting of JSON da
 ## Features
 
 - Format JSON data to improve readability.
-- Minify JSON data to reduce file size.
 - Syntax highlighting for better visualization.
 - Easy-to-use interface for quick formatting.
 
 ## Getting Started
 
-To get started with JSONify, you can visit the live site at [https://yourdomain.com/jsonify](https://yourdomain.com/jsonify) or follow these steps to set up the project locally:
+To get started with JSONify, you can visit the live site at [https://amitchunarkar1.github.io/jsonify](https://amitchunarkar1.github.io/jsonify) or follow these steps to set up the project locally:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/jsonify.git
+   git clone https://github.com/Amitchunarkar1/jsonify.git
    ```
 
 2. Navigate to the project directory:
