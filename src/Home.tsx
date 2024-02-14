@@ -33,7 +33,7 @@ const CollapsibleJSONViewer: FC <{ jsonData: string }> = ({ jsonData }) => {
 
 const Home: FC  = () => {
   const [jsonData, setJsonData] = useState<string>("");
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  // const [searchTerm, setSearchTerm] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const jsonViewerRef = useRef<HTMLDivElement>(null);
@@ -78,11 +78,11 @@ const Home: FC  = () => {
     }
   };
 
-  const searchJson = () => {
+  // const searchJson = () => {
   
 
 
-  };
+  // };
 
   const handleFilter = (key: string) => {
     console.log("key", key);
@@ -103,9 +103,9 @@ const Home: FC  = () => {
     }
   };
 
-  const exportJson = () => {
-    // Implement export functionality here
-  };
+  // const exportJson = () => {
+  //   // Implement export functionality here
+  // };
 
   const btnData = [
     {'title':'Format JSON',  'event' : formatJson},
