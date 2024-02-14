@@ -14,18 +14,31 @@ SyntaxHighlighter.registerLanguage('json', json);
 const CollapsibleJSONViewer: FC <{ jsonData: string }> = ({ jsonData }) => {
   const [collapsed, setCollapsed] = useState<boolean>(false);
 
+  const [fullScreen, setFullScreen] = useState<boolean>(false);
+
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
+  };
+
+  const toggleFullScreen = () => {
+    setFullScreen(!fullScreen);
   };
 
 
   return (
     <div>
-      <button onClick={toggleCollapsed} className="mb-1">{collapsed ? "Expand" : "Collapse"}</button>
+     <div className="button-group">
+        <button onClick={toggleCollapsed} className="mb-1">
+          {collapsed ? 'Expand' : 'Collapse'}
+        </button>
+        <button onClick={toggleFullScreen} className={`mb-1 ${fullScreen ? 'mb-1 full-screen-button' : ''}`}>
+          {fullScreen ? 'Exit Full Screen' : 'Full Screen'}
+        </button>
+      </div>
       {!collapsed && (
-        <ReactJson src={JSON.parse(jsonData)} 
-        theme="shapeshifter"         
-        />
+        <div className={`json-container ${fullScreen ? 'full-screen' : ''}`}>
+          <ReactJson src={JSON.parse(jsonData)} theme="shapeshifter" />
+        </div>
       )}
     </div>
   );
