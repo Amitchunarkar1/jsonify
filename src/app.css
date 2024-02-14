@@ -15,3 +15,15 @@
 .mb-1{
   margin-bottom: 1%;
 }
+.main_section {
+  display: flex;
+}
+.container{
+  max-width: 1250px !important;
+}
+
+.json-box {
+  height: 400px;
+  overflow: auto;
+  font-size: 11px;
+}

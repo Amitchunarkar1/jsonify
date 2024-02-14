@@ -1,16 +1,17 @@
-import { FunctionalComponent } from "preact";
+import { FunctionalComponent as FC } from "preact";
 import { useState, useRef } from "preact/hooks";
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import json from 'react-syntax-highlighter/dist/esm/languages/hljs/json';
 import ReactJson from 'react-json-view';
-
+import Button from "./components/button/button";
+import './app.css'
 SyntaxHighlighter.registerLanguage('json', json);
 
 // interface HTMLInputElementEvent extends Event {
 //   target: HTMLInputElement & EventTarget;
 // }
 
-const CollapsibleJSONViewer: FunctionalComponent<{ jsonData: string }> = ({ jsonData }) => {
+const CollapsibleJSONViewer: FC <{ jsonData: string }> = ({ jsonData }) => {
   const [collapsed, setCollapsed] = useState<boolean>(false);
 
   const toggleCollapsed = () => {
@@ -30,13 +31,14 @@ const CollapsibleJSONViewer: FunctionalComponent<{ jsonData: string }> = ({ json
   );
 };
 
-const Home: FunctionalComponent = () => {
+const Home: FC  = () => {
   const [jsonData, setJsonData] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const jsonViewerRef = useRef<HTMLDivElement>(null);
 
+ 
   const handleInputChange = (event: any) => {
     setJsonData(event.target.value);
     setError(null);
@@ -44,6 +46,9 @@ const Home: FunctionalComponent = () => {
 
   const formatJson = (data: string) => {
     try {
+      if(jsonData == '') {
+        setError('Please Enter Something...')
+      }
       const formattedJson = JSON.stringify(JSON.parse(data), null, 2);
       return formattedJson;
     } catch (error) {
@@ -79,15 +84,15 @@ const Home: FunctionalComponent = () => {
 
   };
 
-  const filterJson = (key: string) => {
+  const handleFilter = (key: string) => {
     console.log("key", key);
   };
 
-  const navigateToSection = (section: string) => {
+  const handleNavigation = (section: string) => {
     console.log("section", section);
   };
 
-  const loadFromURL = async (url: string) => {
+  const handleLoadURL = async (url: string) => {
     try {
       const response = await fetch(url);
       const json = await response.json();
@@ -102,42 +107,49 @@ const Home: FunctionalComponent = () => {
     // Implement export functionality here
   };
 
+  const btnData = [
+    {'title':'Format JSON',  'event' : formatJson},
+    {'title':'Copy to Clipboard',  'event' : handleCopy},
+    {'title':'Search',  'event' : handleInputChange},
+    {'title':'Filter',  'event' : handleFilter},
+    {'title':'Navigate',  'event' : handleNavigation},
+    {'title':'Load from URL',  'event' : handleLoadURL},
+  ];
+
   return (
-    <div style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
+    <div className='container'>
       <h2>JSONIFY</h2>
-      <textarea
-        ref={textAreaRef}
-        value={jsonData}
-        onInput={handleInputChange}
-        onPaste={handlePaste}
-        style={{
-          width: "95%",
-          height: "200px",
-          padding: "10px",
-          fontSize: "16px",
-          border: "1px solid #ccc",
-          borderRadius: "5px",
-          resize: "none",
-        }}
-      ></textarea>
-      <div className="btn-box" >
-        <button onClick={() => setJsonData(formatJson(jsonData))}>Format JSON</button>
-        <button onClick={handleCopy}>Copy to Clipboard</button>
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(event) => setSearchTerm((event.target as HTMLInputElement).value ?? '')}
-          placeholder="Search"
-        />
-        <button onClick={searchJson}>Search</button>
-        <button onClick={() => filterJson("key")}>Filter</button>
-        <button onClick={() => navigateToSection("section")}>Navigate</button>
-        <button onClick={() => loadFromURL("url")}>Load from URL</button>
-        <button onClick={exportJson}>Export</button>
-      </div>
-      {error && <div style={{ color: "red" }}>{error}</div>}
-      <div ref={jsonViewerRef} className="json-box" >
-        {jsonData && <CollapsibleJSONViewer jsonData={jsonData} />}
+
+
+      <div className='main_section row'>
+        <div className='tool_box col-lg-6'>
+          <textarea ref={textAreaRef} value={jsonData} onInput={handleInputChange}
+            onPaste={handlePaste}  placeholder='Enter Json Data' style={{
+              width: "98%",
+              height: "400px",
+              padding: "10px",
+              fontSize: "16px",
+              border: "1px solid #ccc",
+              borderRadius: "5px",
+              resize: "none",
+            }}
+          ></textarea>
+          <div className="btn-box" >
+            {/* Button Rendering */}
+            {
+              btnData.map((items) => <Button title={items.title} onClick={items.event} /> )
+            }
+          </div>
+        </div>
+        <div className='response_box  col-lg-6'>
+            {error && <div style={{ color: "red" }}>{error}</div>}
+            <div ref={jsonViewerRef} className="json-box" >
+              <code >
+               {jsonData && <CollapsibleJSONViewer jsonData={jsonData} />}
+
+              </code>
+            </div>
+        </div>
       </div>
     </div>
   );
