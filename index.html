@@ -13,9 +13,17 @@
     <link rel="icon" type="image/png" sizes="192x192" href="/jsonify/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/jsonify/android-chrome-512x512.png">
     <!-- For Apple Touch Icon -->
+    
     <link rel="apple-touch-icon" href="/jsonify/apple-touch-icon.png">
     <title>JSONIFY</title>
+    <base href="/jsonify/">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Material Design CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  
     <script src="https://cdn.jsdelivr.net/npm/mark.js"></script>
     <style>
       .search-container {
@@ -53,24 +61,24 @@
         background-color: #555; /* Darker button background color on hover */
       }
     </style>
-    <script type="module" crossorigin src="/jsonify/assets/index-D-whYKkN.js"></script>
-    <link rel="stylesheet" crossorigin href="/jsonify/assets/index-3xM6BBTG.css">
+    <script type="module" crossorigin src="/jsonify/assets/index-D9o1G1MO.js"></script>
+    <link rel="stylesheet" crossorigin href="/jsonify/assets/index-Uz60rckM.css">
   </head>
   <body>
     <div id="app"></div>
-    <div id="searchContainer" class="search-container" draggable="true">
+    <!-- <div id="searchContainer" class="search-container" draggable="true">
       <input type="text" id="searchTerm" placeholder="Search...">
-      <button onclick="highlightText()">
-        <i class="fas fa-search"></i> <!-- Search icon -->
+      <button class="btn waves-effect waves-light" onclick="highlightText()">
+        <i class="material-icons left">search</i>Search
       </button>
-      <button onclick="nextResult()">
-        <i class="fas fa-chevron-down"></i> <!-- Next icon -->
+      <button class="btn waves-effect waves-light" onclick="nextResult()">
+        <i class="material-icons left">arrow_downward</i>Next
       </button>
-      <button onclick="previousResult()">
-        <i class="fas fa-chevron-up"></i> <!-- Previous icon -->
-      </button>
+      <button class="btn waves-effect waves-light" onclick="previousResult()">
+        <i class="material-icons left">arrow_upward</i>Previous
+      </button>      
     </div>
-     
+      -->
   
     <script>
 
